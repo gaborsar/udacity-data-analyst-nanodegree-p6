@@ -17,10 +17,10 @@ I also used the Gestalt principle of proximity to separate the teacher support q
 To help the interpretation of the story, I added two callout boxes, to explain both sides of it. To indicate the relationship between the boxes and the direction of the answers they belong to I used the Gestalt principle of similarity, and colored them the same (red for negative, blue for positive).
 
 To help the interpretation, I decided to show only the minimal information and increase the amount of it step by step:
- Step 1: Show the visualization without highlighting anything (everything is gray).
- Step 2: Highlight the negative elements of the visualization, to show how the number of students who are not interested in mathematics decreases as the supportiveness of the teachers increases.
- Step 3: Highlight the positive elements of the visualization, to show how the number of students who are interested in mathematics increases as the supportiveness of the teachers increases.
- Step 4: Highlight everything.
+ 1. Show the visualization without highlighting anything (everything is gray).
+ 2. Highlight the negative elements of the visualization, to show how the number of students who are not interested in mathematics decreases as the supportiveness of the teachers increases.
+ 3. Highlight the positive elements of the visualization, to show how the number of students who are interested in mathematics increases as the supportiveness of the teachers increases.
+ 4. Highlight everything.
 
 I decided to show both the negative and the positive part of the story, to make sure it is well understood, using to the power of repetition.
 
