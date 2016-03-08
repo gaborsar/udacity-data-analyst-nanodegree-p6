@@ -293,7 +293,7 @@ d3.csv('pisa2012_explanatory.csv', function (rawData) {
   // step 13: hide and remove step button
   // step 14: show negative elements and make captions interactive
 
-  var stepButton = addAndShowStepButton('Start');
+  var stepButton = addStepButton('Start');
 
   stepButton.on('click', function () {
 
@@ -331,13 +331,19 @@ d3.csv('pisa2012_explanatory.csv', function (rawData) {
     }, 500);
   });
 
+  function addStepButton(text) {
+    return captionContainer
+      .append('button')
+      .attr('class', 'step')
+      .text(text);
+  }
+
   function addAndShowStepButton(text) {
     var stepButton;
 
-    stepButton = captionContainer
-      .append('button')
-      .attr('class', 'step')
-      .text(text)
+    stepButton = addStepButton(text);
+
+    stepButton
       .style('opacity', 0);
 
     stepButton
