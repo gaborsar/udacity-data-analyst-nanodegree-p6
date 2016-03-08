@@ -1,7 +1,7 @@
 import csv
 
-# This scipt collects the necessary information from the pisa2012.csv file
-# and stores it in the pisa2012_vis.csv file. The resulting file is used in the app.js file
+# This script collects the necessary information from the pisa2012.csv file
+# and stores it in the pisa2012_explanatory.csv file. The resulting file is used in the app.js file
 # for explanatory visualizations.
 
 # approximate running time : 70 seconds

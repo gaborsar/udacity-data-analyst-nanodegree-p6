@@ -1,9 +1,7 @@
 import csv
 
-# This script creates a subset of the pisa2012.csv file that is used in the plots.r file.
-
-# This scipt collects the necessary information from the pisa2012.csv file
-# and stores it in the pisa2012_vis.csv file. The resulting file is used in the plots.r file
+# This script collects the necessary information from the pisa2012.csv file
+# and stores it in the pisa2012_exploratory.csv file. The resulting file is used in the plots.r file
 # for exploratory visualizations.
 
 # approximate running time : 80 seconds
