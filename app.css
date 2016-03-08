@@ -1,0 +1,117 @@
+/* TYPOGRAPHY */
+
+body {
+  font-family: sans-serif;
+  font-weight: lighter;
+}
+
+h1 {
+  font-size: 26px;
+  font-weight: normal;
+  margin-top: 26px;
+  margin-bottom: 26px;
+}
+
+p {
+  font-size: 13px;
+  text-align: justify;
+  margn-top: 10px;
+  margin-bottom: 13px;
+}
+
+/* PAGE STRUCTURE */
+
+.page-container {
+  display: flex;
+  justify-content: center;
+}
+
+.page {
+  width: 1030px;
+  padding: 0 0 50px 0;
+}
+
+.text-container {
+  margin: 0 230px 30px 230px;
+}
+
+/* CHART */
+
+.d3-container {
+  position: relative;
+  width: 1030px;
+}
+
+/* CHART - CAPTIONS */
+
+.caption-container {
+  position: absolute;
+  top: 102px;
+  left: 820px;
+}
+
+.caption {
+  width: 170px;
+  margin-bottom: 20px;
+  padding: 10px;
+  font-size: 13px;
+  background-color: rgb(243, 243, 243); /* light grey 3 */
+}
+
+/* CHART - NOTES */
+
+.note-container {
+  margin-left: 350px;
+}
+
+.note {
+  margin: 0 0 10px 0;
+  font-size: 11px;
+  color: rgb(153, 153, 153); /* dark grey 2 */
+}
+
+/* CHART - BUTTONS */
+
+button {
+  position: relative;
+  margin-bottom: 20px;
+  padding: 10px 20px 10px 30px;
+  border: 0;
+  outline: 0;
+  font-size: 13px;
+  font-weight: lighter;
+  color: rgb(102, 102, 102); /* dark grey 3 */
+  background-color: rgb(243, 243, 243); /* light grey 3 */
+  cursor: pointer;
+  transition: color 250ms, background-color 250ms;
+}
+
+button:hover {
+  color: rgb(67, 67, 67); /* dark grey 4 */
+  background-color: rgb(217, 217, 217); /* light grey 1 */
+}
+
+button.step::after {
+  content: "»";
+  position: absolute;
+  top: 9px;
+  left: 15px;
+  font-size: 13px;
+  font-weight: lighter;
+  color: rgb(102, 102, 102); /* dark grey 3 */
+  transition: color 250ms;
+}
+
+button.step:hover::after {
+  color: rgb(67, 67, 67); /* dark grey 4 */
+}
+
+/* CHART - CHART ELEMENTS */
+
+rect, line, path {
+  shape-rendering: crispEdges;
+}
+
+.axis path {
+  display: none;
+}
