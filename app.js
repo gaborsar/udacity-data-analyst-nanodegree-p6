@@ -257,7 +257,7 @@ d3.csv('pisa2012_explanatory.csv', function (rawData) {
     })
     .style('font-size', '11px')
     .style('fill', colorWhite)
-    .style('fill-opacity', 0) // will be updated in the interactive part;
+    .style('opacity', 0) // will be updated in the interactive part;
 
   // DRAW CHART - CAPTIONS
 
@@ -448,11 +448,11 @@ d3.csv('pisa2012_explanatory.csv', function (rawData) {
 
     transition
       .selectAll('g.teacher-support-row text.bar.negative')
-      .style('fill-opacity', highlightNegative ? 1 : 0);
+      .style('opacity', highlightNegative ? 1 : 0);
 
     transition
       .selectAll('g.teacher-support-row text.bar.positive')
-      .style('fill-opacity', highlightPositive ? 1 : 0);
+      .style('opacity', highlightPositive ? 1 : 0);
 
     transition
       .select('div.caption.negative')
