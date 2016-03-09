@@ -234,12 +234,40 @@ d3.csv('pisa2012_explanatory.csv', function (rawData) {
   // DRAW CHART - MATH INTEREST LABELS
 
   teacherSupportRows
-    .selectAll('text.bar')
+    .selectAll('text.bar.separate')
+    .data(function (d) {
+      return d.values;
+    })
+    .enter()
+    .append('text')
+    .attr('class', function (d) {
+      return className('bar', 'separate', {
+        negaitve: isNegativeAnswer(d.mathInterestValue),
+        positive: isPositiveAnswer(d.mathInterestValue)
+      });
+    })
+    .text(function (d) {
+      return mathInterestLabelFormat(d.proportion);
+    })
+    .attr('x', function (d) {
+      return isNegativeAnswer(d.mathInterestValue) ? x(d.x0) + 5 : x(d.x1) - 5;
+    })
+    .attr('y', y.rangeBand() / 2)
+    .style('dominant-baseline', 'central')
+    .style('text-anchor', function (d) {
+      return isNegativeAnswer(d.mathInterestValue) ? 'start' : 'end';
+    })
+    .style('font-size', '11px')
+    .style('fill', colorWhite)
+    .style('opacity', 0); // will be updated in the interactive part
+
+  teacherSupportRows
+    .selectAll('text.bar.combined')
     .data(getLabelData)
     .enter()
     .append('text')
     .attr('class', function (d) {
-      return className('bar', {
+      return className('bar', 'combined', {
         negative: d.negative,
         positive: d.positive
       });
@@ -257,7 +285,7 @@ d3.csv('pisa2012_explanatory.csv', function (rawData) {
     })
     .style('font-size', '11px')
     .style('fill', colorWhite)
-    .style('opacity', 0) // will be updated in the interactive part;
+    .style('opacity', 0); // will be updated in the interactive part
 
   // DRAW CHART - CAPTIONS
 
@@ -323,6 +351,7 @@ d3.csv('pisa2012_explanatory.csv', function (rawData) {
 
               showNegativeAndPositiveElements();
               makeCaptionsInteractive();
+              makeTeacherSupportRowsInteractive();
 
             }, 500);
           });
@@ -417,6 +446,17 @@ d3.csv('pisa2012_explanatory.csv', function (rawData) {
       });
   }
 
+  function makeTeacherSupportRowsInteractive() {
+    d3Container
+      .selectAll('g.teacher-support-row')
+      .on('mouseover', function () {
+        showSeparateBarText(this);
+      })
+      .on('mouseout', function () {
+        showCombinedBarText(this);
+      });
+  }
+
   // UPDATING FUNCTIONS
 
   function update(highlightNegative, highlightPositive, duration) {
@@ -447,11 +487,11 @@ d3.csv('pisa2012_explanatory.csv', function (rawData) {
       });
 
     transition
-      .selectAll('g.teacher-support-row text.bar.negative')
+      .selectAll('g.teacher-support-row text.bar.combined.negative')
       .style('opacity', highlightNegative ? 1 : 0);
 
     transition
-      .selectAll('g.teacher-support-row text.bar.positive')
+      .selectAll('g.teacher-support-row text.bar.combined.positive')
       .style('opacity', highlightPositive ? 1 : 0);
 
     transition
@@ -461,6 +501,36 @@ d3.csv('pisa2012_explanatory.csv', function (rawData) {
     transition
       .select('div.caption.positive')
       .style('opacity', highlightPositive ? 1 : 0);
+  }
+
+  function showSeparateBarText(teacherSupportRow) {
+
+    var transition = d3.select(teacherSupportRow)
+    .transition()
+    .duration(250);
+
+    transition
+    .selectAll('text.bar.separate')
+    .style('opacity', 1);
+
+    transition
+    .selectAll('text.bar.combined')
+    .style('opacity', 0);
+  }
+
+  function showCombinedBarText(teacherSupportRow) {
+
+    var transition = d3.select(teacherSupportRow)
+      .transition()
+      .duration(250);
+
+    transition
+      .selectAll('text.bar.separate')
+      .style('opacity', 0);
+
+    transition
+      .selectAll('text.bar.combined')
+      .style('opacity', 1);
   }
 
   // HELPER FUNCTIONS
