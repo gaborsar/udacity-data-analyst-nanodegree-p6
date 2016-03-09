@@ -92,7 +92,7 @@ button:hover {
 }
 
 button.step::after {
-  content: "»";
+  content: ">";
   position: absolute;
   top: 9px;
   left: 15px;
