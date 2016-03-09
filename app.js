@@ -22,7 +22,7 @@ d3.csv('pisa2012_explanatory.csv', function (rawData) {
   var teacherSupportQuestions = {
     'ST83Q01': 'The teacher lets us know we have to work hard',
     'ST83Q02': 'The teacher provides extra help when we need it',
-    'ST83Q03': 'The teacher helps the us with our learning',
+    'ST83Q03': 'The teacher helps us with our learning',
     'ST83Q04': 'The teacher gives us opportunity to express opinions'
   };
 
@@ -507,7 +507,7 @@ d3.csv('pisa2012_explanatory.csv', function (rawData) {
 
     var transition = d3.select(teacherSupportRow)
     .transition()
-    .duration(250);
+    .duration(500);
 
     transition
     .selectAll('text.bar.separate')
@@ -522,7 +522,7 @@ d3.csv('pisa2012_explanatory.csv', function (rawData) {
 
     var transition = d3.select(teacherSupportRow)
       .transition()
-      .duration(250);
+      .duration(500);
 
     transition
       .selectAll('text.bar.separate')
