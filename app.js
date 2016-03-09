@@ -217,7 +217,7 @@ d3.csv('pisa2012_explanatory.csv', function (rawData) {
     .attr('class', function (d) {
       return className('bar', {
         negative: isNegativeAnswer(d.mathInterestValue),
-        positive: isPositiveAnswer(d.mathInterestValue),
+        positive: isPositiveAnswer(d.mathInterestValue)
       });
     })
     .attr('x', function (d) {
@@ -241,7 +241,7 @@ d3.csv('pisa2012_explanatory.csv', function (rawData) {
     .attr('class', function (d) {
       return className('bar', {
         negative: d.negative,
-        positive: d.positive,
+        positive: d.positive
       });
     })
     .text(function (d) {
@@ -512,6 +512,8 @@ d3.csv('pisa2012_explanatory.csv', function (rawData) {
   }
 
   function getLabelData(d) {
+    // [0..2]: negative math interest answers
+    // [2..4]: positive math interest answers
     return [
       {
         negative: true,
