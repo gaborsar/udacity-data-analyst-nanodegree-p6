@@ -10,9 +10,7 @@ d3.csv('pisa2012_explanatory.csv', function (rawData) {
   var colorDarkGrey3 = 'rgb(102, 102, 102)';
   var colorDarkGrey4 = 'rgb(67, 67, 67)';
   var colorDarkRed1 = 'rgb(204, 0, 0)';
-  var colorDarkRed1Lighten = 'rgb(255, 0, 0)'; // 10% lighten
   var colorDarkBlue1 = 'rgb(61, 133, 198)';
-  var colorDarkBlue1Lighten = 'rgb(100, 158, 210)'; // 10% lighten
 
   var mathInterestQuestions = {
     'ST29Q01': 'I enjoy reading about mathematics',
@@ -57,16 +55,11 @@ d3.csv('pisa2012_explanatory.csv', function (rawData) {
 
   // FORMATTERS AND SCALES
 
-  var mathInterestLabelFormat = d3.format('.0%');
+  var proportionFormat = d3.format('.0%');
 
   var color = d3.scale.ordinal()
     .domain(answers)
-    .range([
-      colorDarkRed1,
-      colorDarkRed1Lighten,
-      colorDarkBlue1Lighten,
-      colorDarkBlue1
-    ]);
+    .range([colorDarkRed1, colorDarkRed1, colorDarkBlue1, colorDarkBlue1]);
 
   var x = d3.scale.linear()
     .domain([0, 1])
@@ -75,6 +68,11 @@ d3.csv('pisa2012_explanatory.csv', function (rawData) {
   var y = d3.scale.ordinal()
     .domain(answers)
     .rangeRoundBands([0, 120], 0.2);
+
+  var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient('top')
+    .tickFormat(proportionFormat);
 
   var yAxis = d3.svg.axis()
     .scale(y)
@@ -88,7 +86,7 @@ d3.csv('pisa2012_explanatory.csv', function (rawData) {
     .append('svg')
     .attr('class', 'chart-container')
     .attr('width', 1030)
-    .attr('height', 712);
+    .attr('height', 768);
 
   // DRAW CHART - TITLE
 
@@ -155,6 +153,25 @@ d3.csv('pisa2012_explanatory.csv', function (rawData) {
     .style('font-weight', 'bold')
     .style('fill', colorGrey);
 
+  // DRAW CHART - MATH INTEREST AXIS
+
+  chartContainer
+    .append('text')
+    .text('% of total')
+    .attr('x', 350)
+    .attr('y', 71)
+    .style('font-size', '13px')
+    .style('fill', colorGrey);
+
+  chartContainer
+    .append('g')
+    .attr('class', 'axis x')
+    .attr('transform', translate(350, 100))
+    .call(xAxis)
+    .style('font-size', '13px')
+    .style('fill', colorGrey)
+    .style('stroke-width', 1);
+
   // DRAW CHART - TEACHER SUPPORT CONTAINER
 
   var teacherSupportContainer = chartContainer
@@ -166,7 +183,7 @@ d3.csv('pisa2012_explanatory.csv', function (rawData) {
     .append('g')
     .attr('class', 'teacher-support-container')
     .attr('transform', function (d, i) {
-      return translate(0, i * 161 + 77);
+      return translate(0, i * 161 + 132);
     });
 
   // DRAW CHART - TEACHER SUPPORT QUESTION
@@ -200,7 +217,7 @@ d3.csv('pisa2012_explanatory.csv', function (rawData) {
     .attr('transform', translate(350, 18))
     .call(yAxis)
     .style('font-size', '13px')
-    .style('fill', colorDarkGrey2);
+    .style('fill', colorGrey);
 
   // DRAW CHART - TEACHER SUPPORT ROWS
 
@@ -258,7 +275,7 @@ d3.csv('pisa2012_explanatory.csv', function (rawData) {
       });
     })
     .text(function (d) {
-      return mathInterestLabelFormat(d.proportion);
+      return proportionFormat(d.proportion);
     })
     .attr('x', function (d) {
       return isNegativeAnswer(d.mathInterestValue) ? x(d.x0) + 5 : x(d.x1) - 5;
@@ -269,8 +286,26 @@ d3.csv('pisa2012_explanatory.csv', function (rawData) {
       return isNegativeAnswer(d.mathInterestValue) ? 'start' : 'end';
     })
     .style('font-size', '11px')
-    .style('fill', colorWhite)
+    .style('fill', colorLightGrey3) // will be updated in interactive part
     .style('opacity', 0); // will be updated in the interactive part
+
+  // DRAW CHART - MATH INTEREST LABELS - INTERACTIVITY
+
+  teacherSupportRows
+    .on('mouseover', function () {
+      d3.select(this)
+        .selectAll('text.bar')
+        .transition()
+        .duration(500)
+        .style('opacity', 1);
+    })
+    .on('mouseout', function () {
+      d3.select(this)
+        .selectAll('text.bar')
+        .transition()
+        .duration(500)
+        .style('opacity', 0);
+    });
 
   // DRAW CHART - CAPTIONS
 
@@ -311,37 +346,46 @@ d3.csv('pisa2012_explanatory.csv', function (rawData) {
   stepButton.on('click', function () {
 
     hideAndRemoveStepButton(stepButton);
-    addNegativeCaption();
 
     window.setTimeout(function () {
 
-      showNegativeAndHidePositiveElements();
       stepButton = addAndShowStepButton('Next');
+      addNegativeCaption();
+
+      showNegativeAndHidePositiveElements();
 
       stepButton.on('click', function () {
 
+        hideNegativeAndPositiveElements();
         hideAndRemoveStepButton(stepButton);
-        addPositiveCaption();
 
         window.setTimeout(function () {
 
-          hideNegativeAndShowPositiveElements();
+          removeNegativeCaption();
           stepButton = addAndShowStepButton('Next');
+          addPositiveCaption();
+
+          hideNegativeAndShowPositiveElements();
 
           stepButton.on('click', function () {
 
+            hideNegativeAndPositiveElements();
             hideAndRemoveStepButton(stepButton);
 
             window.setTimeout(function () {
 
+              removePositiveCaption();
+              addNegativeCaption();
+              addPositiveCaption();
+
               showNegativeAndPositiveElements();
               makeCaptionsInteractive();
 
-            }, 500);
+            }, 1000);
           });
-        }, 500);
+        }, 1000);
       });
-    }, 500);
+    }, 1000);
   });
 
   function addStepButton(text) {
@@ -352,9 +396,8 @@ d3.csv('pisa2012_explanatory.csv', function (rawData) {
   }
 
   function addAndShowStepButton(text) {
-    var stepButton;
 
-    stepButton = addStepButton(text);
+    var stepButton = addStepButton(text);
 
     stepButton
       .style('opacity', 0);
@@ -370,9 +413,13 @@ d3.csv('pisa2012_explanatory.csv', function (rawData) {
   function hideAndRemoveStepButton(stepButton) {
     stepButton
       .transition()
-      .duration(500)
+      .duration(1000)
       .style('opacity', 0)
       .remove();
+  }
+
+  function hideNegativeAndPositiveElements() {
+    update(false, false, 1000);
   }
 
   function showNegativeAndHidePositiveElements() {
@@ -403,6 +450,18 @@ d3.csv('pisa2012_explanatory.csv', function (rawData) {
       .html('Students who feel their teacher is <b>supportive</b> are <b>more interested</b> in math.')
       .style('color', colorDarkBlue1)
       .style('opacity', 0);
+  }
+
+  function removeNegativeCaption() {
+    captionContainer
+      .select('div.caption.negative')
+      .remove();
+  }
+
+  function removePositiveCaption() {
+    captionContainer
+      .select('div.caption.positive')
+      .remove();
   }
 
   function makeCaptionsInteractive() {
@@ -461,11 +520,11 @@ d3.csv('pisa2012_explanatory.csv', function (rawData) {
 
     transition
       .selectAll('g.teacher-support-row text.bar.negative')
-      .style('opacity', highlightNegative ? 1 : 0);
+      .style('fill', highlightNegative ? colorWhite : colorLightGrey3);
 
     transition
       .selectAll('g.teacher-support-row text.bar.positive')
-      .style('opacity', highlightPositive ? 1 : 0);
+      .style('fill', highlightPositive ? colorWhite : colorLightGrey3);
 
     transition
       .select('div.caption.negative')

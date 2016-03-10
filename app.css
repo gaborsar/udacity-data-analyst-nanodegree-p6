@@ -46,7 +46,7 @@ p {
 
 .caption-container {
   position: absolute;
-  top: 102px;
+  top: 158px;
   left: 820px;
 }
 
@@ -112,6 +112,11 @@ rect, line, path {
   shape-rendering: crispEdges;
 }
 
-.axis path {
+.axis.x path, .axis.x line {
+  fill: none;
+  stroke: rgb(204, 204, 204); /* grey */
+}
+
+.axis.y path {
   display: none;
 }
