@@ -6,9 +6,7 @@ PISA (Programme for International Student Assessment) is an international survey
 
 ## Design
 
-### Iteration 1
-
-http://bl.ocks.org/gaborsar/raw/56d225b31c1eaf24eccb/73dc99b5614c1409a65df98f017ffec70fa84b4c/
+### [Iteration 1](http://bl.ocks.org/gaborsar/raw/56d225b31c1eaf24eccb/73dc99b5614c1409a65df98f017ffec70fa84b4c/)
 
 The stacked bar chart is good in showing part to whole relationships, so I picked that to visualize the proportion of students who selected each mathematical interest answer (bar), across each teacher support answer (group), given to each teacher support question (super group).
 
