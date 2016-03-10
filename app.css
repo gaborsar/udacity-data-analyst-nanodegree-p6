@@ -46,7 +46,7 @@ p {
 
 .caption-container {
   position: absolute;
-  top: 158px;
+  top: 137px;
   left: 820px;
 }
 
@@ -119,4 +119,14 @@ rect, line, path {
 
 .axis.y path {
   display: none;
+}
+
+.teacher-support-row text.bar {
+  opacity: 0;
+  cursor: default;
+  transition: opacity 500ms;
+}
+
+.teacher-support-row:hover text.bar {
+  opacity: 1;
 }

@@ -86,7 +86,7 @@ d3.csv('pisa2012_explanatory.csv', function (rawData) {
     .append('svg')
     .attr('class', 'chart-container')
     .attr('width', 1030)
-    .attr('height', 768);
+    .attr('height', 748);
 
   // DRAW CHART - TITLE
 
@@ -156,17 +156,9 @@ d3.csv('pisa2012_explanatory.csv', function (rawData) {
   // DRAW CHART - MATH INTEREST AXIS
 
   chartContainer
-    .append('text')
-    .text('% of total')
-    .attr('x', 350)
-    .attr('y', 71)
-    .style('font-size', '13px')
-    .style('fill', colorGrey);
-
-  chartContainer
     .append('g')
     .attr('class', 'axis x')
-    .attr('transform', translate(350, 100))
+    .attr('transform', translate(350, 79))
     .call(xAxis)
     .style('font-size', '13px')
     .style('fill', colorGrey)
@@ -183,7 +175,7 @@ d3.csv('pisa2012_explanatory.csv', function (rawData) {
     .append('g')
     .attr('class', 'teacher-support-container')
     .attr('transform', function (d, i) {
-      return translate(0, i * 161 + 132);
+      return translate(0, i * 161 + 111);
     });
 
   // DRAW CHART - TEACHER SUPPORT QUESTION
@@ -286,26 +278,7 @@ d3.csv('pisa2012_explanatory.csv', function (rawData) {
       return isNegativeAnswer(d.mathInterestValue) ? 'start' : 'end';
     })
     .style('font-size', '11px')
-    .style('fill', colorLightGrey3) // will be updated in interactive part
-    .style('opacity', 0); // will be updated in the interactive part
-
-  // DRAW CHART - MATH INTEREST LABELS - INTERACTIVITY
-
-  teacherSupportRows
-    .on('mouseover', function () {
-      d3.select(this)
-        .selectAll('text.bar')
-        .transition()
-        .duration(500)
-        .style('opacity', 1);
-    })
-    .on('mouseout', function () {
-      d3.select(this)
-        .selectAll('text.bar')
-        .transition()
-        .duration(500)
-        .style('opacity', 0);
-    });
+    .style('fill', colorLightGrey3); // will be updated in interactive part
 
   // DRAW CHART - CAPTIONS
 
