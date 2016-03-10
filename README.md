@@ -67,11 +67,12 @@ Feedback also suggested that the moving position of the `Start` and `Next` butto
 [pisa_2012_database]: https://pisa2012.acer.edu.au/downloads.php
 [storytellingwithdata_book]: http://www.storytellingwithdata.com/book/
 [storytellingwithdata_alternatives_to_pies]: http://www.storytellingwithdata.com/blog/2014/06/alternatives-to-pies
+[storytellingwithdata_power_of_simple_text]: http://www.storytellingwithdata.com/blog/2012/06/power-of-simple-text
 [d3_normalized_stacked_bar_chart]: https://bl.ocks.org/mbostock/3886394
-
 
 1. [PISA 2012 Results in Focus][pisa_2012_results_in_focus]
 2. [PISA 2012 Database][pisa_2012_database]
 3. [Cole Nussbaumer Knaflic, storytelling with data][storytellingwithdata_book]
 4. [Cole Nussbaumer Knaflic, alternatives to pies][storytellingwithdata_alternatives_to_pies]
-5. [Normalized Stacked Bar Chart][d3_normalized_stacked_bar_chart]
+5. [Cole Nussbaumer Knaflic, power of simple text][storytellingwithdata_power_of_simple_text]
+6. [Normalized Stacked Bar Chart][d3_normalized_stacked_bar_chart]
