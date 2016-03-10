@@ -6,6 +6,10 @@ PISA (Programme for International Student Assessment) is an international survey
 
 ## Design
 
+### Iteration 1
+
+http://bl.ocks.org/gaborsar/raw/56d225b31c1eaf24eccb/73dc99b5614c1409a65df98f017ffec70fa84b4c/
+
 The stacked bar chart is good in showing part to whole relationships, so I picked that to visualize the proportion of students who selected each mathematical interest answer (bar), across each teacher support answer (group), given to each teacher support question (super group).
 
 As the direction of the answers (not interested in mathematics, interested in mathematics) is more important than the actual answers, I decided to color by the former. To make it clear that colors represent mathematical interest answers, I used the Gestalt principle of proximity and moved the legend close to the main mathematical interest question, and far from the teacher support questions. To maximize the contrast and make the visualization accessible to color-blind viewers, I selected red for the negative and blue for the positive direction.
@@ -24,7 +28,40 @@ To help the interpretation, I decided to show only the minimal information and i
 
 I decided to show both the negative and the positive part of the story, to make sure it is well understood, using to the power of repetition.
 
+### [Iteration 2](http://bl.ocks.org/gaborsar/raw/56d225b31c1eaf24eccb/56af718df6a8a12e7fbb036982c7535443f20422/)
+
+Feedback suggested that it was complicated to understand what the bars mean because only one summed percentage was visible on them. To fix that I added individual percentage values and made them visible on mouseover.
+
+### [Iteration 3](http://bl.ocks.org/gaborsar/raw/56d225b31c1eaf24eccb/cea7f5b7630024b6957812bcbc1fb9187495c2b0/)
+
+Feedback suggested the summary text was too long. I made it shorter, and simpler to understand.
+
+### [Iteration 4](http://bl.ocks.org/gaborsar/raw/56d225b31c1eaf24eccb/3a49e0eaf1b7791b8de6ce0ca6942c548d1039b5/)
+
+Fixed typo (*"The teacher helps the us with our learning"* to *"The teacher helps us with our learning"*).
+
+### [Iteration 5](http://bl.ocks.org/gaborsar/raw/56d225b31c1eaf24eccb/999d9efa104883eb46fff75690d54579c3d8e892/)
+
+Based on further feedback about the summary I did split long sentences to shorter ones.
+
+### [Iteration 6](http://bl.ocks.org/gaborsar/raw/56d225b31c1eaf24eccb/461c0b1fd2d90b855e1463c1ef523efce1537a9c/)
+
+Based on further feedback I made individual percentages default and removed summed percentages.
+I added more colors (shades) to make a clean separation between the mathematical interest answers.
+I also made the legend more conventional, as the simple text legend was not intuitive enough.
+
+### [Iteration 7](http://bl.ocks.org/gaborsar/raw/56d225b31c1eaf24eccb/b9e78ccda132070bc45a4e6d25c8af2af747a834/)
+
+Further feedback suggested that the changes introduced in the previous iteration added clutter that made interpretation more difficult. To fix this I reverted to the original two colors, and I also made the percentage values only visible on mouseover.
+
+As these changes lead back to the original unintuitive nature of the chart, I decided to add an x-axis. I had the feeling that without the disturbing summed percentages and with the more conventional legend it should improve the intuitiveness of the chart.
+
+Feedback also suggested that the moving position of the `Start` and `Next` buttons was disturbing and harmed the user experience. In response, I made the button positions fixed.
+
 ## Feedback
+
+ * [Udacity Discussion Forum](https://discussions.udacity.com/t/final-project-feedback-pisa-interest-in-mathematics-varies-by-teacher-support/159958)
+ * [Google+ Udacity's Data Analyst Nanodegree Community](https://plus.google.com/u/0/101569911673430269340/posts/DjjtgceoDuf)
 
 ## Resources
 
